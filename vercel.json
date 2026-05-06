@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "destination": "https://gams2.netlify.app/$1",
+      "destination": "",
       "permanent": false
     }
   ]
