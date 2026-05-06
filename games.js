@@ -1,58 +1,58 @@
 const games =`
 <a class="game-link" href="gamefiles/hollowknight.html">
-    <img loading="lazy" src="gameimages/hollowknight.png" alt="Hollow Knight Cover">
+    <img loading="eager" src="gameimages/hollowknight.png" alt="Hollow Knight Cover">
     <div>Hollow Knight</div>
 </a>
 <a class="game-link" href="gamefiles/buckshotroulette.html">
-    <img loading="lazy" src="gameimages/buckshotroulette.jpg" alt="Buckshot Roulette Cover">
+    <img loading="eager" src="gameimages/buckshotroulette.jpg" alt="Buckshot Roulette Cover">
     <div>Buckshot Roulette</div>
 </a>
 <a class="game-link" href="gamefiles/doom64.html">
-    <img loading="lazy" src="gameimages/doom64.jpg" alt="Doom 64 Cover">
+    <img loading="eager" src="gameimages/doom64.jpg" alt="Doom 64 Cover">
     <div>Doom 64</div>
 </a>
 <a class="game-link" href="gamefiles/ultrakillgame.html">
-    <img loading="lazy" src="gameimages/ultrakill.jpg" alt="Ultrakill Cover">
+    <img loading="eager" src="gameimages/ultrakill.jpg" alt="Ultrakill Cover">
     <div>Ultrakill</div>
 </a>
 <a class="game-link" href="gamefiles/omorigame.html">
-    <img loading="lazy" src="gameimages/omori.png" alt="Omori Cover">
+    <img loading="eager" src="gameimages/omori.png" alt="Omori Cover">
     <div>Omori</div>
 </a>
 <a class="game-link" href="gamefiles/repo.html">
-    <img loading="lazy" src="gameimages/repo.webp" alt="Repo Cover">
+    <img loading="eager" src="gameimages/repo.webp" alt="Repo Cover">
     <div>R.E.P.O</div>
 </a>
 <a class="game-link" href="gamefiles/minecraft1.12.2.html">
-    <img loading="lazy" src="gameimages/minecraft.webp" alt="Minecraft Cover">
+    <img loading="eager" src="gameimages/minecraft.webp" alt="Minecraft Cover">
     <div>Minecraft 1.12.2</div>
 </a>
 <a class="game-link" href="gamefiles/Basketrandom.html">
-    <img loading="lazy" src="gameimages/basketrandom.png" alt="Basket Random Cover">
+    <img loading="eager" src="gameimages/basketrandom.png" alt="Basket Random Cover">
     <div>Basket Random</div>
 </a>
 <a class="game-link" href="gamefiles/Bendyandtheinkmachine.html">
-    <img loading="lazy" src="gameimages/bendy.png" alt="Bendy and the Ink Machine Cover">
+    <img loading="eager" src="gameimages/bendy.png" alt="Bendy and the Ink Machine Cover">
     <div>Bendy and the Ink Machine</div>
 </a>
 <a class="game-link" href="gamefiles/classof'09.html">
-    <img loading="lazy" src="gameimages/classof09.png" alt="Class of '09 Cover">
+    <img loading="eager" src="gameimages/classof09.png" alt="Class of '09 Cover">
     <div>Class of '09</div>
 </a>
 <a class="game-link" href="gamefiles/hotlinemiami.html">
-    <img loading="lazy" src="gameimages/hotlinemiami.png" alt="Hotline Miami Cover">
+    <img loading="eager" src="gameimages/hotlinemiami.png" alt="Hotline Miami Cover">
     <div>Hotline Miami</div>
 </a>
 <a class="game-link" href="gamefiles/cupheadgame.html">
-    <img loading="lazy" src="gameimages/cuphead.png" alt="Cuphead Cover">
+    <img loading="eager" src="gameimages/cuphead.png" alt="Cuphead Cover">
     <div>Cuphead</div>
 </a>
 <a class="game-link" href="gamefiles/halflife.html">
-    <img loading="lazy" src="gameimages/halflife.png" alt="Half-life Cover">
+    <img loading="eager" src="gameimages/halflife.png" alt="Half-life Cover">
     <div>Half-life</div>
 </a>
 <a class="game-link" href="gamefiles/peopleplayground.html">
-    <img loading="lazy" src="gameimages/peopleplayground.jpg" alt="People Playground Cover">
+    <img loading="eager" src="gameimages/peopleplayground.jpg" alt="People Playground Cover">
     <div>People Playground</div>
 </a>
 <a class="game-link" href="gamefiles/stickmanhook.html">
