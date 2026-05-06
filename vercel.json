@@ -3,7 +3,7 @@
     {
       "source": "/(.*)",
       "destination": "https://gams2.netlify.app/$1",
-      "permanent": true
+      "permanent": false
     }
   ]
 }
