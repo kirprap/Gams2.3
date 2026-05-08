@@ -1,8 +1,9 @@
-const RELEASE_TAG = "2.3.1";
+const RELEASE_TAG = "2.3.2"; //UPDATE EVERY TIME YOU WANT TO PUBLISH A NEW VERSION WITH BIG CHANGES
 const gameList = document.querySelector(".game-list");
 let spinny = false;
 let inbt = null;
 let number = 0;
+
 // adds all the games
 function addAllGames() {
   document.querySelector(".game-list").innerHTML = games;
@@ -24,6 +25,7 @@ function randomgame() {
   newnode.classList.add("game-rand");
 }
 randomgame();
+
 function spinnywheel(reset = false) {
   if (reset === true) {
     number = 0;
@@ -43,6 +45,7 @@ function spinnywheel(reset = false) {
     inbt = null;
   }
 }
+
 (function () {
   function sortGameListAlpha() {
     const list = document.querySelector(".game-list");
@@ -112,12 +115,17 @@ function checkForUpdates() {
           .find((line) => line && !line.startsWith("#"));
 
         if (fileInfo != RELEASE_TAG) {
-          const result = confirm(`New version available: ${fileInfo}`);
+          const banner = document.getElementById("update-banner");
+          const text = document.getElementById("update-text");
+          const btn = document.getElementById("update-btn");
 
-          if (result) {
-            window.open("https://api.github.com/repos/apathak31-wq/Gams2.3");
-          } else {
-            console.log("User canceled");
+          if (banner) {
+            text.innerText = `New version available: ${fileInfo}`;
+            banner.style.display = "block";
+            btn.onclick = function () {
+              window.open("https://github.com/apathak31-wq/Gams2.3", "_blank");
+              banner.style.display = "none";
+            };
           }
         }
       }
@@ -126,7 +134,11 @@ function checkForUpdates() {
 }
 
 window.addEventListener("keydown", (e) => {
-  if (e.key === "U") {
-    checkForUpdates();
+  if (e.key === "`") {
+    window.location.href = "https://classroom.google.com/";
   }
 });
+
+setInterval(() => {
+  checkForUpdates();
+}, 300000); //auto checks for updates every 5 minutes

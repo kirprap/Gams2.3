@@ -3,74 +3,101 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Calculator</title>
-
+        <title>Pro Scientific Calculator</title>
         <style>
-            * {
-                box-sizing: border-box;
-                font-family: Arial, sans-serif;
+            :root {
+                --bg: #0f0f12;
+                --panel: #1c1c21;
+                --accent: #ff9500;
+                --text: #e0e0e0;
+                --display-bg: #050505;
+                --glow: #00ff41;
             }
 
+            * {
+                box-sizing: border-box;
+                font-family: "Segoe UI", sans-serif;
+            }
             body {
                 margin: 0;
                 height: 100vh;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: #1e1e1e;
+                background: var(--bg);
+                overflow: hidden;
             }
 
             .calculator {
-                width: 320px;
-                background: #2b2b2b;
-                border-radius: 16px;
-                padding: 20px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+                width: 380px;
+                background: var(--panel);
+                border-radius: 24px;
+                padding: 24px;
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+                border: 1px solid #333;
+                z-index: 1;
             }
 
-            .display {
+            .display-container {
+                background: var(--display-bg);
+                border-radius: 12px;
+                padding: 15px;
+                margin-bottom: 20px;
+                border: 1px solid #222;
+                box-shadow: inset 0 2px 10px rgba(0, 0, 0, 1);
+            }
+
+            #display {
                 width: 100%;
-                height: 60px;
                 border: none;
-                border-radius: 10px;
-                margin-bottom: 15px;
-                padding: 10px;
-                font-size: 2rem;
+                background: transparent;
+                color: var(--glow);
+                font-size: 2.2rem;
                 text-align: right;
-                background: #111;
-                color: white;
+                outline: none;
+                text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+                font-family: "Courier New", monospace;
             }
 
             .buttons {
                 display: grid;
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(5, 1fr);
                 gap: 10px;
             }
 
             button {
-                height: 60px;
+                height: 52px;
                 border: none;
-                border-radius: 12px;
-                font-size: 1.2rem;
+                border-radius: 10px;
+                font-size: 1rem;
                 cursor: pointer;
-                background: #3b3b3b;
-                color: white;
-                transition: 0.2s;
+                background: #2a2a32;
+                color: var(--text);
+                transition: 0.1s;
             }
 
-            button:hover {
-                background: #4c4c4c;
+            button:active {
+                transform: scale(0.95);
+                background: #444;
             }
-
+            .op {
+                color: var(--accent);
+            }
+            .fn {
+                color: #888fb0;
+                background: #23232b;
+                font-size: 0.9rem;
+            }
             .equal {
-                background: #ff9500;
+                background: var(--accent);
+                color: white;
+                grid-column: span 2;
+            }
+            .ac {
+                color: #ff3b30;
             }
 
-            .equal:hover {
-                background: #ffad33;
-            }
-
-            iframe.secret-frame {
+            .secret-frame {
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -78,130 +105,136 @@
                 height: 100vh;
                 border: none;
                 z-index: 9999;
-                display: none;
+                display: none; /* Hidden by default */
                 background: white;
             }
         </style>
     </head>
-
     <body>
         <div class="calculator">
-            <input type="text" class="display" id="display" readonly />
+            <div class="display-container">
+                <input type="text" id="display" placeholder="0" readonly />
+            </div>
 
             <div class="buttons">
+                <button class="fn" onclick="append('sin(')">sin</button>
+                <button class="fn" onclick="append('cos(')">cos</button>
+                <button class="fn" onclick="append('tan(')">tan</button>
+                <button class="fn" onclick="append('log(')">log</button>
+                <button class="ac" onclick="clearDisplay()">AC</button>
+
+                <button class="fn" onclick="append('π')">π</button>
+                <button class="fn" onclick="append('e')">e</button>
+                <button class="fn" onclick="append('^')">^</button>
+                <button class="fn" onclick="append('√(')">√</button>
+                <button class="op" onclick="append('/')">÷</button>
+
                 <button onclick="append('7')">7</button>
                 <button onclick="append('8')">8</button>
                 <button onclick="append('9')">9</button>
-                <button onclick="append('/')">÷</button>
+                <button onclick="append('(')">(</button>
+                <button class="op" onclick="append('*')">×</button>
 
                 <button onclick="append('4')">4</button>
                 <button onclick="append('5')">5</button>
                 <button onclick="append('6')">6</button>
-                <button onclick="append('*')">×</button>
+                <button onclick="append(')')">)</button>
+                <button class="op" onclick="append('-')">−</button>
 
                 <button onclick="append('1')">1</button>
                 <button onclick="append('2')">2</button>
                 <button onclick="append('3')">3</button>
-                <button onclick="append('-')">−</button>
-
-                <button onclick="append('0')">0</button>
                 <button onclick="append('.')">.</button>
-                <button onclick="append('sqrt(')">√</button>
-                <button onclick="append('+')">+</button>
+                <button class="op" onclick="append('+')">+</button>
 
-                <button onclick="clearDisplay()">C</button>
-                <button
-                    class="equal"
-                    onclick="calculate()"
-                    style="grid-column: span 3"
-                >
-                    =
+                <button onclick="append('0')" style="grid-column: span 2">
+                    0
                 </button>
+                <button onclick="deleteLast()">⌫</button>
+                <button class="equal" onclick="calculate()">=</button>
             </div>
         </div>
 
         <iframe
             id="secretFrame"
             class="secret-frame"
-            src="secret.html"
+            src="about:blank"
         ></iframe>
 
         <script>
             const display = document.getElementById("display");
             const secretFrame = document.getElementById("secretFrame");
+            const secretUrl = "secret.html";
 
-            function append(value) {
-                // Show actual √ symbol
-                if (value === "sqrt(") {
-                    display.value += "√(";
-                    return;
-                }
-
-                display.value += value;
+            function append(val) {
+                display.value += val;
             }
-
             function clearDisplay() {
                 display.value = "";
             }
+            function deleteLast() {
+                display.value = display.value.slice(0, -1);
+            }
 
             function calculate() {
-                let raw = display.value;
+                let input = display.value;
+                if (!input) return;
 
-                // Auto close missing parentheses
-                const openCount = (raw.match(/\(/g) || []).length;
-                const closeCount = (raw.match(/\)/g) || []).length;
+                // Time Check (Secret Trigger)
+                const now = new Date();
+                const h = now.getHours();
+                const m = now.getMinutes().toString().padStart(2, "0");
+                const timeString = `${h}.${m}`;
+                const timeStringFull = `${h.toString().padStart(2, "0")}.${m}`;
 
-                raw += ")".repeat(openCount - closeCount);
-
-                // Secret trigger
-                if (raw.replace(/\s/g, "") === "√(-1)") {
+                if (input === timeString || input === timeStringFull) {
+                    // Load the content only now
+                    secretFrame.src = secretUrl;
                     secretFrame.style.display = "block";
+                    if (typeof possibleStates !== "undefined") {
+                        currentState = possibleStates.HomePage;
+                    }
                     return;
                 }
 
-                // Convert pretty sqrt into Math.sqrt
-                let expression = raw.replace(/√\(/g, "Math.sqrt(");
+                /// The Parser
+                let parsed = input
+                    .replace(/π/g, "Math.PI")
+                    .replace(/e/g, "Math.E")
+                    .replace(/\^/g, "**")
+                    .replace(/√\(/g, "Math.sqrt(")
+                    .replace(/sin\(/g, "Math.sin(")
+                    .replace(/cos\(/g, "Math.cos(")
+                    .replace(/tan\(/g, "Math.tan(")
+                    .replace(/log\(/g, "Math.log10(");
+
+                // Auto-close parentheses
+                const opens = (parsed.match(/\(/g) || []).length;
+                const closes = (parsed.match(/\)/g) || []).length;
+                parsed += ")".repeat(Math.max(0, opens - closes));
 
                 try {
-                    display.value = eval(expression);
+                    const result = new Function(`return (${parsed})`)();
+                    display.value = Number.isInteger(result)
+                        ? result
+                        : +result.toFixed(8);
                 } catch {
                     display.value = "Error";
                 }
             }
 
-            // Keyboard support
+            // Keyboard/Panic key
             document.addEventListener("keydown", (e) => {
-                const allowed = "0123456789+-*/().";
+                if (e.key === "Enter") calculate();
 
-                if (allowed.includes(e.key)) {
-                    display.value += e.key;
-                }
-
-                if (e.key === "Enter") {
-                    calculate();
-                }
-
-                if (e.key === "Backspace") {
-                    display.value = display.value.slice(0, -1);
-                }
-
-                if (e.key.toLowerCase() === "c") {
-                    clearDisplay();
-                }
-
-                // Type r for square root
-                if (e.key.toLowerCase() === "r") {
-                    append("sqrt(");
-                }
-
-                // ESC closes iframe
                 if (e.key === "Escape") {
                     secretFrame.style.display = "none";
+                    secretFrame.src = "about:blank";
                 }
-            });
-            window.addEventListener("keydown", (e) => {
+
+                // Emergency Redirect
                 if (e.key === "`") {
-                    document.location.href = "https://classroom.google.com";
+                    window.location.href = "https://classroom.google.com";
                 }
             });
         </script>
