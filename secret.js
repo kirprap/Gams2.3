@@ -1,4 +1,4 @@
-const RELEASE_TAG = "2.3.1";
+const RELEASE_TAG = "2.3.2"; //UPDATE EVERY TIME YOU WANT TO PUBLISH A NEW VERSION WITH BIG CHANGES
 const gameList = document.querySelector(".game-list");
 let spinny = false;
 let inbt = null;
@@ -112,7 +112,9 @@ function checkForUpdates() {
           .find((line) => line && !line.startsWith("#"));
 
         if (fileInfo != RELEASE_TAG) {
-          const result = confirm(`New version available: ${fileInfo}`);
+          const result = confirm(
+            `New version available: ${fileInfo}, click OK to go to the download page`,
+          );
 
           if (result) {
             window.open("https://api.github.com/repos/apathak31-wq/Gams2.3");
@@ -126,7 +128,11 @@ function checkForUpdates() {
 }
 
 window.addEventListener("keydown", (e) => {
-  if (e.key === "U") {
-    checkForUpdates();
+  if (e.key === "`") {
+    window.location.href = "https://classroom.google.com/";
   }
 });
+
+setInterval(() => {
+  checkForUpdates();
+}, 300000); //auto checks for updates every 5 minutes
