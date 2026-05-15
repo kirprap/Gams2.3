@@ -1,4 +1,4 @@
-const RELEASE_TAG = "2.3.2"; //UPDATE EVERY TIME YOU WANT TO PUBLISH A NEW VERSION WITH BIG CHANGES
+const RELEASE_TAG = "2.3.3"; //UPDATE EVERY TIME YOU WANT TO PUBLISH A NEW VERSION WITH BIG CHANGES
 const gameList = document.querySelector(".game-list");
 let spinny = false;
 let inbt = null;
